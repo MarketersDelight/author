@@ -1,7 +1,7 @@
 <?php
 /**
  * Drop-in Name: Author Extras
- * Description: Author photos, the author box, and the author's photo beside post titles.
+ * Description: Upload author photos to replace Gravatar across your site, and show the author's photo beside post titles.
  * Author: Alex, Kolakube
  * Author URI: https://marketersdelight.com/
  * Drop-in URI: https://marketersdelight.com/dropins/author/
@@ -37,7 +37,6 @@ class md_author_extras extends md_api {
 	 */
 
 	public function actions() {
-		add_action( 'md_hook_content_item', 'md_author_box', 19 );
 		add_filter( 'md_media', array( $this, 'author_page_media' ), 10, 2 );
 		add_filter( 'md_title_media', array( $this, 'title_media' ), 10, 2 );
 		add_filter( 'pre_get_avatar_data', array( $this, 'avatar_data' ), 10, 2 );
@@ -119,82 +118,36 @@ class md_author_extras extends md_api {
 	}
 
 	/**
-	 * The author switches save into Layout's Content options, where they've
-	 * always been, so existing settings carry over.
+	 * The Remove Author photo switch saves into Layout's Content options,
+	 * where it's always been, so existing settings carry over.
 	 *
 	 * @since 1.0
 	 */
 
 	public function layout_fields( $fields ) {
 		if ( isset( $fields['content']['options'] ) )
-			$fields['content']['options'] = array_merge( $fields['content']['options'], array( 'author_box', 'add_author_box', 'hide_title_image' ) );
+			$fields['content']['options'] = array_merge( $fields['content']['options'], array( 'hide_title_image' ) );
 
 		return $fields;
 	}
 
 	/**
-	 * Draw the author switches in Layout's Content options: the post type's
-	 * Add Author Box, and on a post, Add or Remove Author Box against the
-	 * post type's setting and Remove Author photo when the post type shows
-	 * one.
+	 * Draw Remove Author photo on a post when its post type shows the
+	 * author's photo beside titles.
 	 *
 	 * @since 1.0
 	 */
 
 	public function layout_field( $fields, $context ) {
-		$post_type = $context['post_type'];
-
-		if ( $context['is_taxonomy'] || $context['is_term'] )
+		if ( $context['is_admin'] || ! $context['is_post'] || ! md_post_type_field( array( 'author_photo', 'display', 'show' ), null, $context['post_type'] ) )
 			return;
-
-		if ( $context['is_admin'] ) {
-			if ( $context['settings_post_type'] === 'author' )
-				return;
-
-			$fields->field( 'content', array(
-				'type' => 'checkbox',
-				'options' => array(
-					'add_author_box' => __( 'Add <b>Author Box</b>', 'md-author' )
-				)
-			) );
-
-			return;
-		}
-
-		if ( ! $context['is_post'] )
-			return;
-
-		if ( md_post_type_field( array( 'author_photo', 'display', 'show' ), null, $post_type ) )
-			$fields->field( 'content', array(
-				'type' => 'checkbox',
-				'options' => array(
-					'hide_title_image' => __( 'Remove <b>Author photo</b>', 'md-author' )
-				)
-			) );
-
-		if ( $post_type === 'page' )
-			return;
-
-		$box = md_post_type_field( array( 'layout', 'content', 'add_author_box' ), null, $post_type )
-			? array( 'author_box' => __( 'Remove <b>Author Box</b>', 'md-author' ) )
-			: array( 'add_author_box' => __( 'Add <b>Author Box</b>', 'md-author' ) );
 
 		$fields->field( 'content', array(
 			'type' => 'checkbox',
-			'options' => $box
+			'options' => array(
+				'hide_title_image' => __( 'Remove <b>Author photo</b>', 'md-author' )
+			)
 		) );
-	}
-
-	/**
-	 * Add the author box styles to MD's compiled stylesheet.
-	 *
-	 * @since 1.0
-	 */
-
-	public function css( $templates ) {
-		$templates['author'] = md_css( 'dropins', 'author/css', true );
-
-		return $templates;
 	}
 
 }

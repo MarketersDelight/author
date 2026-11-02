@@ -1,8 +1,8 @@
 <?php
 /**
  * Tests Author photos: the uploaded photo, the Author photo title image
- * on singles and author pages, that a post's own image keeps its place,
- * and the author box switches.
+ * on singles and author pages, and that a post's own image keeps its
+ * place.
  *
  * @since 1.0
  */
@@ -116,25 +116,6 @@ class AuthorExtrasTest extends MD_InheritanceTestCase {
 
 		$this->assertSame( 7, $media['author'] );
 		$this->assertSame( 55, $media['image']['id'] );
-	}
-
-	public function test_author_box_follows_the_post_type_and_the_post() {
-		md_test_set_query( array( 'post_type' => 'post' ) );
-		$this->assertSame( false, md_has_author_box() );
-
-		md_test_set_query( array( 'is_singular' => true ) );
-		md_test_set_option( 'marketers_delight', array( 'post' => array( 'layout' => array( 'content' => array( 'add_author_box' => true ) ) ) ) );
-		$this->assertSame( true, md_has_author_box() );
-
-		md_test_set_post_meta( array( 'layout' => array( 'content' => array( 'author_box' => true ) ) ) );
-		$this->assertSame( false, md_has_author_box() );
-	}
-
-	public function test_author_box_skips_posts_in_a_nested_loop() {
-		md_test_set_query( array( 'is_singular' => true, 'post_type' => 'post', 'previous_post' => true, 'queried_object_id' => 99 ) );
-		md_test_set_option( 'marketers_delight', array( 'post' => array( 'layout' => array( 'content' => array( 'add_author_box' => true ) ) ) ) );
-
-		$this->assertSame( false, md_has_author_box() );
 	}
 
 }

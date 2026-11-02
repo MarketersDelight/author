@@ -2,7 +2,7 @@
 	"name" : "Author Extras",
 	"author" : "Alex, Kolakube",
 	"version" : "1.0",
-	"description" : "Author photos, the author box, and the author's photo beside post titles.",
+	"description" : "Upload author photos to replace Gravatar across your site, and show the author's photo beside post titles.",
 	"dropin_url" : "https://marketersdelight.com/dropins/author/",
 	"author_url" : "https://marketersdelight.com/",
 	"icon" : "dashicons-admin-users",
