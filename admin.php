@@ -60,17 +60,28 @@ class md_author_photo extends md_api {
 		return array(
 			'display' => array(
 				'type' => 'checkbox',
-				'options' => array( 'show' )
+				'options' => array(
+					'show' => __( 'Show the author&rsquo;s photo beside single post titles', 'md-author' )
+				)
 			),
 			'position' => array(
 				'type' => 'select',
+				'label' => __( 'Position', 'md-author' ),
 				'options' => array( 'title_right', 'title_center' )
 			),
 			'mobile' => array(
 				'type' => 'select',
-				'options' => array( 'beside', 'hide' )
+				'label' => __( 'Position on mobile', 'md-author' ),
+				'options' => array(
+					'beside' => __( 'Keep beside', 'md-author' ),
+					'hide' => __( 'Hide', 'md-author' )
+				)
 			),
-			'image_width' => array( 'type' => 'number' )
+			'image_width' => array(
+				'type' => 'number',
+				'label' => __( 'Max width', 'md-author' ),
+				'max' => 550
+			)
 		);
 	}
 

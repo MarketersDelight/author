@@ -143,7 +143,6 @@ class md_author_extras extends md_api {
 			return;
 
 		$fields->field( 'content', array(
-			'type' => 'checkbox',
 			'options' => array(
 				'hide_title_image' => __( 'Remove <b>Author photo</b>', 'md-author' )
 			)

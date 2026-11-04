@@ -22,7 +22,8 @@ class md_author_profile extends md_api {
 				'fields' => array(
 					'photo' => array(
 						'type' => 'upload',
-						'upload_type' => 'media'
+						'upload_type' => 'media',
+						'label' => __( 'Author photo', 'md-author' )
 					)
 				)
 			)
@@ -37,9 +38,6 @@ class md_author_profile extends md_api {
 
 	public function user_meta( $user_meta ) {
 		$this->fields->field( 'photo', array(
-			'type' => 'upload',
-			'upload_type' => 'media',
-			'label' => __( 'Author photo', 'md-author' ),
 			'description' => __( 'Shown in post titles and on your author page, and as your avatar in bylines, the author box and comments.', 'md-author' ),
 			'user_meta' => $user_meta
 		) );
