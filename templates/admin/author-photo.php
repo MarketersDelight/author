@@ -2,7 +2,7 @@
 
 	<?php $this->fields->field( 'display', array(
 		'classes' => 'md-conditional-option',
-		'wrap_classes' => 'md-sep-micro',
+		'wrap_classes' => 'mb-third',
 		'description' => sprintf( __( 'Uses the Author photo on each author&rsquo;s <a href="%s">profile</a>. A featured image placed beside the title keeps its place, and authors without a photo show none.', 'md-author' ), esc_url( admin_url( 'profile.php' ) ) )
 	) ); ?>
 

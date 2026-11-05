@@ -10,7 +10,9 @@
  * Version: 1.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
- * Requires MD: 6.1.1
+ * Requires MD: 6.2
+ * Icon: dashicons-admin-users
+ * Colors: #8a4b9e
  */
 
 class md_author_extras extends md_api {
