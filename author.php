@@ -7,7 +7,7 @@
  * Drop-in URI: https://marketersdelight.com/dropins/author/
  * Drop-in Slug: author
  * Text Domain: md-author
- * Version: 1.0
+ * Version: 1.0.1
  * Requires at least: 6.2
  * Requires PHP: 7.4
  * Requires MD: 6.2
