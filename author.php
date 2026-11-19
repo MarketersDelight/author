@@ -1,16 +1,16 @@
 <?php
 /**
  * Drop-in Name: Author Extras
- * Description: Upload author photos to replace Gravatar across your site, and show the author's photo beside post titles.
+ * Description: Upload author photos to replace Gravatar across your site, show the author's photo beside post titles, and add social profiles to the author box.
  * Author: Alex, Kolakube
  * Author URI: https://marketersdelight.com/
  * Drop-in URI: https://marketersdelight.com/dropins/author/
  * Drop-in Slug: author
  * Text Domain: md-author
- * Version: 1.0.1
+ * Version: 1.1.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
- * Requires MD: 6.2
+ * Requires MD: 6.2.4
  * Icon: dashicons-admin-users
  * Colors: #8a4b9e
  */
@@ -18,8 +18,8 @@
 class md_author_extras extends md_api {
 
 	/**
-	 * Load the author photo profile field, the Author Photo settings tab and
-	 * the author functions.
+	 * Load the author photo and social profile fields, the Author Photo
+	 * settings tab and the author functions.
 	 *
 	 * @since 1.0
 	 */
@@ -27,6 +27,7 @@ class md_author_extras extends md_api {
 	public function includes() {
 		require_once __DIR__ . '/functions.php';
 		require_once __DIR__ . '/profile.php';
+		require_once __DIR__ . '/social.php';
 
 		if ( is_admin() )
 			require_once __DIR__ . '/admin.php';

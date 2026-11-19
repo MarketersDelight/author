@@ -1,6 +1,6 @@
 # Author Extras
 
-A [Marketers Delight](https://marketersdelight.com/) drop-in for your authors. Each author can upload a photo that replaces their Gravatar across the site, and the author's photo can sit beside single post titles.
+A [Marketers Delight](https://marketersdelight.com/) drop-in for your authors. Each author can upload a photo that replaces their Gravatar across the site, show it beside single post titles, and add a job title, social profiles and their own links to the theme's author box.
 
 ## Features
 
@@ -9,10 +9,14 @@ A [Marketers Delight](https://marketersdelight.com/) drop-in for your authors. E
   - Shown as the image on the author's archive page, in place of the sitewide author image
 - **Author photo in titles**: the author's photo beside single post titles, for any post type
   - A featured image placed beside the title keeps its place, and authors without a photo show none
+- **Job title**: shown under the author's name in the author box
+- **Social profiles**: X, YouTube, Instagram, LinkedIn, Facebook, Pinterest, TikTok, Bluesky, Substack, Telegram and GitHub, listed in the author box with icons and names
+  - Saved to the same user meta keys SEO plugins use, so the values carry over either way, and a network another plugin already shows a field for is left out
+- **Other links**: up to 3 of the author's own links (a book, a course, another site), shown beside their website
 
 ## Settings
 
-**On each user's profile**: **Author photo**.
+**On each user's profile**: **Author photo**, and the **Author Extras** box: **Job title**, **Social profiles** and **Other links**. Authors can fill these in on their own profile.
 
 **On each post type's MD settings page**:
 
@@ -24,12 +28,13 @@ A [Marketers Delight](https://marketersdelight.com/) drop-in for your authors. E
 
 - `md_author_photo_id( $user_id )`: an author's uploaded photo as an attachment ID, or `0`. Gravatar is never used.
 - Author Extras fills the theme's `md_media` and `md_title_media` filters for the author page image and the title photo, and swaps avatars on `pre_get_avatar_data`.
+- It fills the theme's author box through `md_author_box_subtitle` (job title) and `md_author_box_links` (social profiles, and other links marked `custom`).
 
 ## Requirements
 
 Author photos shipped inside the MD theme until they moved to this drop-in in MD 6.1.1. Saved photos and settings carry over as they are.
 
-- Marketers Delight 6.1.1 or later
+- Marketers Delight 6.2.4 or later
 - WordPress 6.2 or later
 - PHP 7.4 or later
 
